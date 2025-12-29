@@ -64,23 +64,20 @@ export default function Navbar() {
                 <Icon className="link-icon" />
                 <span className="link-text">{item.label}</span>
 
-                {/* Ajouter l’icône soleil/lune uniquement sur Contact */}
-                {item.label === "Contact" && (
-                  <span
-                    className="theme-btn"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setDarkMode(!darkMode);
-                    }}
-                    title="Changer le thème"
-                  >
-                    {darkMode ? <FaSun /> : <FaMoon />}
-                  </span>
-                )}
+                
               </Link>
             );
           })}
         </ul>
+        <div
+  className="theme-btn standalone"
+  onClick={() => setDarkMode(!darkMode)}
+  title="Changer le thème"
+>
+  {darkMode ? <FaMoon /> : <FaSun />}
+
+</div>
+
       </div>
 
       <style>{`
@@ -96,15 +93,19 @@ export default function Navbar() {
         }
 
         .navbar.dark {
-          background: rgba(20, 20, 20, 0.25);
-        }
+  background: #000000;
+}
+
+
 
         .navbar-container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0.6rem 2rem;
-        }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* rapproche les liens du logo */
+  gap: 5rem; /* espace contrôlé entre logo et liens */
+  padding: 0.6rem 2rem;
+}
+
 
         .logo {
           display: flex;
@@ -125,41 +126,48 @@ export default function Navbar() {
 
         .nav-links {
           display: flex;
-          gap: 1.5rem;
+          gap: 4rem;
           list-style: none;
           font-weight: 700;
         }
 
         .nav-item {
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
-          color: ${darkMode ? "#f0c4e6" : "black"};
-          text-decoration: none;
-          transition: color 0.3s;
-          cursor: pointer;
-        }
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: ${darkMode ? "#ffffff" : "#000000"};
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+        .theme-btn.standalone {
+  color: #b15b86;
+}
+
 
         .nav-item:hover {
           opacity: 0.8;
         }
 
         .link-icon {
-          font-size: 1.3rem;
-          color: ${darkMode ? "#f0c4e6" : "#b15b86"};
-        }
+  font-size: 1.3rem;
+  color: #b15b86;
+}
+
 
         .link-text {
           font-size: 1.1rem;
         }
 
         .theme-btn {
-          display: flex;
-          align-items: center;
-          margin-left: 0.3rem;
-          font-size: 1.1rem;
-          color: ${darkMode ? "#f0c4e6" : "#b15b86"};
-        }
+       display: flex;
+  align-items: center;
+  margin-left: 0.6rem; /* espace entre Contact et la lune */
+  font-size: 1.1rem;
+  color: ${darkMode ? "#f0c4e6" : "#b15b86"};
+}
+
 
         .menu-btn {
           display: none;
@@ -171,6 +179,13 @@ export default function Navbar() {
           .menu-btn {
             display: block;
           }
+
+          .theme-btn.standalone {
+           position: absolute;
+           right: 1.5rem;
+           top: 1rem;
+          }
+
 
           .nav-links {
             position: fixed;
