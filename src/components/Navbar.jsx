@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   FaHome,
@@ -8,31 +8,23 @@ import {
   FaBars,
   FaTimes,
   FaGraduationCap,
-  FaBriefcase,
+  FaTools,
+  FaFolderOpen,
   FaMoon,
   FaSun,
 } from "react-icons/fa";
 
-export default function Navbar() {
+export default function Navbar({ darkMode, setDarkMode }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
 
   const links = [
     { icon: FaHome, label: "Accueil", to: "/" },
     { icon: FaUserAlt, label: "À propos", to: "/about" },
-    { icon: FaGraduationCap, label: "Education", to: "/education" },
-    { icon: FaBriefcase, label: "Stages & Projets", to: "/projects" },
+    { icon: FaGraduationCap, label: "Diplôme", to: "/diplome-stage" },
+    { icon: FaTools, label: "Compétence", to: "/competence" },
+    { icon: FaFolderOpen, label: "Projets", to: "/projects" },
     { icon: FaEnvelope, label: "Contact", to: "/contact" },
   ];
-
-  useEffect(() => {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setDarkMode(true);
-    }
-  }, []);
 
   return (
     <nav className={`navbar ${darkMode ? "dark" : "light"}`}>
@@ -63,21 +55,18 @@ export default function Navbar() {
               >
                 <Icon className="link-icon" />
                 <span className="link-text">{item.label}</span>
-
-                
               </Link>
             );
           })}
         </ul>
+
         <div
-  className="theme-btn standalone"
-  onClick={() => setDarkMode(!darkMode)}
-  title="Changer le thème"
->
-  {darkMode ? <FaMoon /> : <FaSun />}
-
-</div>
-
+          className="theme-btn standalone"
+          onClick={() => setDarkMode(!darkMode)}
+          title="Changer le thème"
+        >
+          {darkMode ? <FaMoon /> : <FaSun />}
+        </div>
       </div>
 
       <style>{`
@@ -87,25 +76,18 @@ export default function Navbar() {
           left: 0;
           width: 100%;
           z-index: 50;
-          background: rgba(255, 255, 255, 0.1);
+          background: ${darkMode ? "#000328" : "white"};
           backdrop-filter: blur(8px);
           transition: background 0.3s, color 0.3s;
         }
 
-        .navbar.dark {
-  background: #000000;
-}
-
-
-
         .navbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* rapproche les liens du logo */
-  gap: 5rem; /* espace contrôlé entre logo et liens */
-  padding: 0.6rem 2rem;
-}
-
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 4.5rem;
+          padding: 0.6rem 2rem;
+        }
 
         .logo {
           display: flex;
@@ -132,42 +114,31 @@ export default function Navbar() {
         }
 
         .nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: ${darkMode ? "#ffffff" : "#000000"};
-  text-decoration: none;
-  transition: color 0.3s;
-  cursor: pointer;
-}
-
-        .theme-btn.standalone {
-  color: #b15b86;
-}
-
-
-        .nav-item:hover {
-          opacity: 0.8;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          color: ${darkMode ? "#ffffff" : "#000000"};
+          text-decoration: none; /* supprime la ligne */
+          transition: color 0.3s;
+          cursor: pointer;
         }
 
         .link-icon {
-  font-size: 1.3rem;
-  color: #b15b86;
-}
-
+          font-size: 1.5rem; /* taille uniforme pour toutes les icônes */
+          color: #b15b86;
+        }
 
         .link-text {
           font-size: 1.1rem;
         }
 
-        .theme-btn {
-       display: flex;
-  align-items: center;
-  margin-left: 0.6rem; /* espace entre Contact et la lune */
-  font-size: 1.1rem;
-  color: ${darkMode ? "#f0c4e6" : "#b15b86"};
-}
-
+        .theme-btn.standalone {
+          color: #b15b86;
+          margin-left: 0.6rem;
+          font-size: 1.1rem;
+          display: flex;
+          align-items: center;
+        }
 
         .menu-btn {
           display: none;
@@ -181,11 +152,10 @@ export default function Navbar() {
           }
 
           .theme-btn.standalone {
-           position: absolute;
-           right: 1.5rem;
-           top: 1rem;
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
           }
-
 
           .nav-links {
             position: fixed;
@@ -194,15 +164,11 @@ export default function Navbar() {
             height: 100vh;
             width: 70%;
             flex-direction: column;
-            background: rgba(255, 255, 255, 0.95);
+            background: ${darkMode ? "#000328" : "white"};
             padding: 2rem 1.5rem;
             gap: 2rem;
             transition: left 0.3s ease-in-out;
             z-index: 50;
-          }
-
-          .navbar.dark .nav-links {
-            background: rgba(20, 20, 20, 0.95);
           }
 
           .nav-links.open {
