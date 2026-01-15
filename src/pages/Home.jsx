@@ -125,7 +125,7 @@ const Home = () => {
         <div className="flex items-center justify-center mt-6 space-x-8">
           {showIcons[0] && (
             <a
-              href="https://github.com/tonpseudo"
+              href="https://github.com/NoraBld"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-transform duration-300 hover:scale-125"
@@ -135,7 +135,8 @@ const Home = () => {
           )}
           {showIcons[1] && (
             <a
-              href="https://www.linkedin.com/in/tonprofil"
+              href=" https://www.linkedin.com/in/nora-belaid-931606380"
+            
               target="_blank"
               rel="noopener noreferrer"
               className="transition-transform duration-300 hover:scale-125"
@@ -145,7 +146,7 @@ const Home = () => {
           )}
           {showIcons[2] && (
             <a
-              href="mailto:tonemail@gmail.com"
+              href="mailto:norabelaid86@gmail.com"
               className="transition-transform duration-300 hover:scale-125"
             >
               <FaEnvelope size={40} color="#ff66c4" />
