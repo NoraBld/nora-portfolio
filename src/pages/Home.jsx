@@ -1,61 +1,61 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Home = () => {
-  const fullText1 = "Salut, je suis ";
-  const fullName = "Nora Nou";
-  const fullText2 = "Développeuse Fullstack passionnée, créative et curieuse.";
-  
-  const [text1, setText1] = useState("");
-  const [nameText, setNameText] = useState("");
-  const [text2, setText2] = useState("");
-  const [i1, setI1] = useState(0);
-  const [iName, setIName] = useState(0);
-  const [i2, setI2] = useState(0);
+  const lines = [
+    "Bienvenue sur mon portfolio",
+    "Je suis Nora BLD",
+    "Développeuse Fullstack & Software Engineer"
+  ];
 
-  // Gestion darkMode
+  const [currentTexts, setCurrentTexts] = useState(["", "", ""]);
+  const [currentLine, setCurrentLine] = useState(0);
+  const [currentChar, setCurrentChar] = useState(0);
+
+  // Dark mode
   const [darkMode, setDarkMode] = useState(false);
-
   useEffect(() => {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
   }, []);
 
-  // Animations textes
-  useEffect(() => {
-    if (i1 < fullText1.length) {
-      const t = setTimeout(() => {
-        setText1(text1 + fullText1[i1]);
-        setI1(i1 + 1);
-      }, 60);
-      return () => clearTimeout(t);
-    }
-  }, [i1, text1]);
+  // Contrôle apparition icônes
+  const [showIcons, setShowIcons] = useState([false, false, false]);
 
+  // Typewriter animation
   useEffect(() => {
-    if (i1 === fullText1.length && iName < fullName.length) {
-      const t = setTimeout(() => {
-        setNameText(nameText + fullName[iName]);
-        setIName(iName + 1);
-      }, 100);
-      return () => clearTimeout(t);
+    if (currentLine < lines.length) {
+      if (currentChar < lines[currentLine].length) {
+        const t = setTimeout(() => {
+          const newTexts = [...currentTexts];
+          newTexts[currentLine] += lines[currentLine][currentChar];
+          setCurrentTexts(newTexts);
+          setCurrentChar(currentChar + 1);
+        }, 60);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => {
+          setCurrentLine(currentLine + 1);
+          setCurrentChar(0);
+        }, 300);
+        return () => clearTimeout(t);
+      }
+    } else {
+      // Quand toutes les lignes sont finies, déclencher les icônes
+      const timers = [
+        setTimeout(() => setShowIcons([true, false, false]), 500),
+        setTimeout(() => setShowIcons([true, true, false]), 800),
+        setTimeout(() => setShowIcons([true, true, true]), 1100)
+      ];
+      return () => timers.forEach(t => clearTimeout(t));
     }
-  }, [iName, i1, nameText]);
-
-  useEffect(() => {
-    if (iName === fullName.length && i2 < fullText2.length) {
-      const t = setTimeout(() => {
-        setText2(text2 + fullText2[i2]);
-        setI2(i2 + 1);
-      }, 50);
-      return () => clearTimeout(t);
-    }
-  }, [i2, iName, text2]);
+  }, [currentChar, currentLine, currentTexts]);
 
   return (
     <div
-      className="relative min-h-screen w-full flex flex-col items-center justify-center"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center px-4"
       style={{
         background: darkMode ? "#000328" : "white",
         color: darkMode ? "#fff" : "#000",
@@ -64,20 +64,98 @@ const Home = () => {
     >
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <div className="flex flex-col justify-center items-center text-center px-4 mt-28">
-        <h1 className="intro-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6">
-          {text1}
-          <span className="neon">{nameText}</span>
-          {iName === fullName.length && "."}
+      {/* Texte principal */}
+      <div className="flex flex-col items-center text-center mt-28 whitespace-pre-line">
+        {/* Ligne 1 */}
+        <h1 className="font-extrabold mb-2" style={{ fontSize: "4rem" }}>
+          {currentTexts[0]}
         </h1>
 
-        <p className="sub-text text-lg sm:text-xl md:text-2xl font-semibold opacity-0">
-          {text2}
-        </p>
+        {/* Ligne 2 : Nom en néon */}
+        <h2
+          className="font-extrabold mb-2 neon"
+          style={{ fontSize: "2.5rem", lineHeight: "2" }}
+        >
+          {currentTexts[1]}
+        </h2>
+
+        {/* Ligne 3 : Développeuse Fullstack & Software Engineer + GIF */}
+        <div className="flex items-center justify-center mt-6">
+          <span
+            style={{
+              fontSize:
+                window.innerWidth >= 1280
+                  ? "2rem"
+                  : window.innerWidth >= 768
+                  ? "2rem"
+                  : "1.5rem",
+              fontWeight: 600,
+              lineHeight: 2.2,
+              textAlign: "center",
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          >
+            {currentTexts[2]}
+            {currentTexts[2] === lines[2] && (
+              <img
+                src="/laptop.gif"
+                alt="Laptop Icon"
+                style={{
+                  marginLeft: "0.5rem",
+                  width:
+                    window.innerWidth >= 1280
+                      ? "9rem"
+                      : window.innerWidth >= 768
+                      ? "4rem"
+                      : "2rem",
+                  height:
+                    window.innerWidth >= 1280
+                      ? "5rem"
+                      : window.innerWidth >= 768
+                      ? "3rem"
+                      : "2rem",
+                }}
+              />
+            )}
+          </span>
+        </div>
+
+        {/* Icônes sociales animées */}
+        <div className="flex items-center justify-center mt-6 space-x-8">
+          {showIcons[0] && (
+            <a
+              href="https://github.com/tonpseudo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-125"
+            >
+              <FaGithub size={40} color="#ff66c4" />
+            </a>
+          )}
+          {showIcons[1] && (
+            <a
+              href="https://www.linkedin.com/in/tonprofil"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform duration-300 hover:scale-125"
+            >
+              <FaLinkedin size={40} color="#ff66c4" />
+            </a>
+          )}
+          {showIcons[2] && (
+            <a
+              href="mailto:tonemail@gmail.com"
+              className="transition-transform duration-300 hover:scale-125"
+            >
+              <FaEnvelope size={40} color="#ff66c4" />
+            </a>
+          )}
+        </div>
       </div>
 
+      {/* Styles néon */}
       <style>{`
-        /* Neon effet pour le nom */
         .neon {
           color: #ff66c4;
           text-shadow: 0 0 5px #ff66c4, 0 0 10px #ff66c4, 0 0 20px #ff66c4, 0 0 40px #ff66c4;
@@ -87,22 +165,6 @@ const Home = () => {
         @keyframes pulse {
           0% { text-shadow: 0 0 5px #ff66c4, 0 0 10px #ff66c4, 0 0 20px #ff66c4, 0 0 40px #ff66c4; }
           100% { text-shadow: 0 0 10px #ff66c4, 0 0 20px #ff66c4, 0 0 30px #ff66c4, 0 0 50px #ff66c4; }
-        }
-
-        /* Animation apparition texte secondaire */
-        .sub-text {
-          animation: fadeIn 2s forwards;
-          animation-delay: ${fullText1.length * 0.06 + fullName.length * 0.1}s;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px);}
-          to { opacity: 1; transform: translateY(0);}
-        }
-
-        /* Animation typewriter pour l’intro */
-        .intro-text {
-          white-space: pre-wrap;
         }
       `}</style>
     </div>
