@@ -118,13 +118,13 @@ export default function Navbar({ darkMode, setDarkMode }) {
           align-items: center;
           gap: 0.3rem;
           color: ${darkMode ? "#ffffff" : "#000000"};
-          text-decoration: none; /* supprime la ligne */
+          text-decoration: none;
           transition: color 0.3s;
           cursor: pointer;
         }
 
         .link-icon {
-          font-size: 1.5rem; /* taille uniforme pour toutes les icônes */
+          font-size: 1.5rem;
           color: #b15b86;
         }
 
@@ -147,9 +147,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
         }
 
         @media (max-width: 768px) {
-          .menu-btn {
-            display: block;
-          }
+          .menu-btn { display: block; }
 
           .theme-btn.standalone {
             position: absolute;
@@ -171,9 +169,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
             z-index: 50;
           }
 
-          .nav-links.open {
-            left: 0;
-          }
+          .nav-links.open { left: 0; }
 
           .overlay {
             position: fixed;
