@@ -20,9 +20,9 @@ export default function Navbar({ darkMode, setDarkMode }) {
   const links = [
     { icon: FaHome, label: "Accueil", to: "/" },
     { icon: FaUserAlt, label: "À propos", to: "/about" },
-    { icon: FaGraduationCap, label: "Diplôme", to: "/diplome-stage" },
+    { icon: FaGraduationCap, label: "Diplôme", to: "/diplomeetstage" },
     { icon: FaTools, label: "Compétence", to: "/competence" },
-    { icon: FaFolderOpen, label: "Projets", to: "/projects" },
+    { icon: FaFolderOpen, label: "Projets", to: "/mesprojet" },
     { icon: FaEnvelope, label: "Contact", to: "/contact" },
   ];
 

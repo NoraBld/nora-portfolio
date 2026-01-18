@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import ParticlesBackground from "../components/ParticlesBackground";
 
-export default function Competence() {
+export default function About() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
