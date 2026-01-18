@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import ParticlesBackground from "../components/ParticlesBackground";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Home() {
@@ -12,26 +13,27 @@ export default function Home() {
   const [currentTexts, setCurrentTexts] = useState(["", "", ""]);
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
-
-  // Dark mode
+  const [showIcons, setShowIcons] = useState([false, false, false]);
   const [darkMode, setDarkMode] = useState(false);
+
+  // Détecter le mode sombre automatiquement
   useEffect(() => {
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
       setDarkMode(true);
     }
   }, []);
 
-  // Contrôle apparition icônes
-  const [showIcons, setShowIcons] = useState([false, false, false]);
-
-  // Typewriter animation
+  // Machine à écrire
   useEffect(() => {
     if (currentLine < lines.length) {
       if (currentChar < lines[currentLine].length) {
         const t = setTimeout(() => {
-          const newTexts = [...currentTexts];
-          newTexts[currentLine] += lines[currentLine][currentChar];
-          setCurrentTexts(newTexts);
+          const texts = [...currentTexts];
+          texts[currentLine] += lines[currentLine][currentChar];
+          setCurrentTexts(texts);
           setCurrentChar(currentChar + 1);
         }, 60);
         return () => clearTimeout(t);
@@ -48,76 +50,79 @@ export default function Home() {
         setTimeout(() => setShowIcons([true, true, false]), 800),
         setTimeout(() => setShowIcons([true, true, true]), 1100)
       ];
-      return () => timers.forEach(t => clearTimeout(t));
+      return () => timers.forEach(clearTimeout);
     }
   }, [currentChar, currentLine, currentTexts]);
 
   return (
-    <div
-      className="relative min-h-screen w-full flex flex-col items-center justify-center px-4"
-      style={{
-        background: darkMode ? "#000328" : "white",
-        color: darkMode ? "#fff" : "#000",
-        transition: "background 0.3s, color 0.3s",
-      }}
-    >
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+    <>
+      {/* Background */}
+      <ParticlesBackground backgroundColor={darkMode ? "#000328" : "#ffffff"} />
 
-      {/* Texte principal */}
-      <div className="flex flex-col items-center text-center mt-28 whitespace-pre-line">
-        <h1 className="font-extrabold mb-2" style={{ fontSize: "4rem" }}>
-          {currentTexts[0]}
-        </h1>
+      {/* Contenu */}
+      <div
+        className="relative min-h-screen flex flex-col items-center justify-center px-4 z-10"
+        style={{ color: darkMode ? "#ffffff" : "#000000" }}
+      >
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        <h2
-          className="font-extrabold mb-2 neon"
-          style={{ fontSize: "2.5rem", lineHeight: "2" }}
-        >
-          {currentTexts[1]}
-        </h2>
-
-        <div className="flex items-center justify-center mt-6 home-role">
-          <span
+       <div className="flex flex-col items-center text-center mt-28 whitespace-pre-line ">
+          {/* Titre principal */}
+          <h1
+            className="text-6xl font-extrabold mb-4"
+            style={{ fontSize: "4rem" , color: darkMode ? "#ffffff" : "#000000" }}
+          >
+            {currentTexts[0]}
+          </h1>
+<div style={{ height: "2rem" }}></div>
+          {/* Sous-titre fixe #B15B86 */}
+          <h2
+            className="font-extrabold mb-2 neon"
             style={{
-              fontSize: window.innerWidth >= 768 ? "2rem" : "1.5rem",
+              fontSize: "2.5rem",
+              color: "#B15B86",
+              textShadow: "0 0 10px #B15B86, 0 0 20px #B15B86"
+            }}
+          >
+            {currentTexts[1]}
+          </h2>
+
+          {/* Rôle */}
+<div className="flex items-center justify-center mt-6 home-role"
+            style={{ fontSize: window.innerWidth >= 768 ? "2rem" : "1.5rem",
               fontWeight: 600,
               lineHeight: 2.2,
               textAlign: "center",
               display: "inline-flex",
-              alignItems: "center",
-            }}
+              alignItems: "center",color: darkMode ? "#ffffff" : "#000000" }}
           >
             {currentTexts[2]}
             {currentTexts[2] === lines[2] && (
-              <img
-                className="home-gif"
-                src="/laptop.gif"
-                alt="Laptop Icon"
-                style={{
-                  marginLeft: "0.5rem",
-                  width: window.innerWidth >= 768 ? "9rem" : "2rem",
-                  height: window.innerWidth >= 768 ? "9rem" : "2rem",
-                }}
-              />
+              <img src="/laptop.gif" alt="Laptop" className="w-24 h-24" />
             )}
-          </span>
-        </div>
+          </div>
 
-        {/* Icônes sociales */}
+          {/* Icônes sociales */}
         <div className="flex items-center justify-center mt-6 social-icons">
-          {showIcons[0] && <FaGithub size={40} color="#b15b86" className="icon" />}
-          {showIcons[1] && <FaLinkedin size={40} color="#b15b86" className="icon" />}
-          {showIcons[2] && <FaEnvelope size={40} color="#b15b86" className="icon" />}
+          {showIcons[0] && <a href="https://github.com/NoraBld" target="_blank" rel="noopener noreferrer">
+            <FaGithub size={40} color="#b15b86" className="icon" />
+          </a>}
+          {showIcons[1] && <a href="https://www.linkedin.com/in/nora-belaid-931606380" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin size={40} color="#b15b86" className="icon" />
+          </a>}
+          {showIcons[2] && <a href="mailto:norabelaid86@gmail.com">
+            <FaEnvelope size={40} color="#b15b86" className="icon" />
+          </a>}
+        </div>
         </div>
       </div>
 
+      {/* Styles */}
       <style>{`
         .neon {
-          color: #b15b86;
-          text-shadow: 0 0 5px #b15b86, 0 0 10px #b15b86, 0 0 20px #b15b86, 0 0 40px #b15b86;
           animation: pulse 1.5s infinite alternate;
         }
-
+          
         .social-icons .icon {
           margin: 0 0.8rem;
           transition: transform 0.3s;
@@ -127,20 +132,19 @@ export default function Home() {
         }
 
         @keyframes pulse {
-          0% { text-shadow: 0 0 5px #b15b86, 0 0 10px #b15b86, 0 0 20px #b15b86, 0 0 40px #b15b86; }
-          100% { text-shadow: 0 0 10px #b15b86, 0 0 20px #b15b86, 0 0 30px #b15b86, 0 0 50px #b15b86; }
+          from { text-shadow: 0 0 5px #B15B86; }
+          to { text-shadow: 0 0 20px #B15B86; }
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
           h1 { font-size: 3rem !important; }
-          h2 { font-size: 2rem !important; }
+          h2 { font-size: 2rem !important; line-height: 2 }
           .home-role { font-size: 1.5rem !important; }
         }
         @media (max-width: 768px) {
-          h1 { font-size: 2.2rem !important; }
-          h2 { font-size: 1.6rem !important; line-height: 1.4 !important; }
-          .home-role { font-size: 1.2rem !important; flex-direction: column; gap: 0.5rem; }
+          h1 { font-size: 2.2rem !important;line-height: 1.5}
+          h2 { font-size: 1.6rem !important; line-height: 1.5 !important; }
+          .home-role { font-size: 1.2rem !important; flex-direction: column; gap: 0.5rem;  }
           .home-gif { width: 9rem !important; height: 4rem !important; margin-left: 0 !important; }
           .social-icons .icon { width: 32px; height: 32px; }
         }
@@ -149,6 +153,6 @@ export default function Home() {
           h2 { font-size: 1.4rem !important; }
         }
       `}</style>
-    </div>
+    </>
   );
 }

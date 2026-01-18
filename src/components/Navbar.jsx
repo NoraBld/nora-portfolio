@@ -89,30 +89,11 @@ export default function Navbar({ darkMode, setDarkMode }) {
           padding: 0.6rem 2rem;
         }
 
-        .logo {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-        }
+        .logo { display: flex; align-items: center; gap: 0.4rem; }
+        .logo h1 { font-size: 1.8rem; font-weight: 800; color: #b15b86; }
+        .logo-icon { font-size: 1.8rem; color: #b15b86; }
 
-        .logo h1 {
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: #b15b86;
-        }
-
-        .logo-icon {
-          font-size: 1.8rem;
-          color: #b15b86;
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 4rem;
-          list-style: none;
-          font-weight: 700;
-        }
-
+        .nav-links { display: flex; gap: 4rem; list-style: none; font-weight: 700; }
         .nav-item {
           display: flex;
           align-items: center;
@@ -122,39 +103,14 @@ export default function Navbar({ darkMode, setDarkMode }) {
           transition: color 0.3s;
           cursor: pointer;
         }
-
-        .link-icon {
-          font-size: 1.5rem;
-          color: #b15b86;
-        }
-
-        .link-text {
-          font-size: 1.1rem;
-        }
-
-        .theme-btn.standalone {
-          color: #b15b86;
-          margin-left: 0.6rem;
-          font-size: 1.1rem;
-          display: flex;
-          align-items: center;
-        }
-
-        .menu-btn {
-          display: none;
-          cursor: pointer;
-          z-index: 60;
-        }
+        .link-icon { font-size: 1.5rem; color: #b15b86; }
+        .link-text { font-size: 1.1rem; }
+        .theme-btn.standalone { color: #b15b86; margin-left: 0.6rem; font-size: 1.1rem; display: flex; align-items: center; }
+        .menu-btn { display: none; cursor: pointer; z-index: 60; }
 
         @media (max-width: 768px) {
           .menu-btn { display: block; }
-
-          .theme-btn.standalone {
-            position: absolute;
-            right: 1.5rem;
-            top: 1rem;
-          }
-
+          .theme-btn.standalone { position: absolute; right: 1.5rem; top: 1rem; }
           .nav-links {
             position: fixed;
             top: 0;
@@ -168,9 +124,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
             transition: left 0.3s ease-in-out;
             z-index: 50;
           }
-
           .nav-links.open { left: 0; }
-
           .overlay {
             position: fixed;
             top: 0;
@@ -183,11 +137,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
             transition: opacity 0.3s ease;
             z-index: 45;
           }
-
-          .overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-          }
+          .overlay.show { opacity: 1; pointer-events: auto; }
         }
       `}</style>
     </nav>
