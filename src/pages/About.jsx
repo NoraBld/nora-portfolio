@@ -91,6 +91,7 @@ export default function About() {
     <>
       <ParticlesBackground backgroundColor={darkMode ? "#000328" : "#ffffff"} />
 
+
       <div className={darkMode ? "dark-mode container" : "light-mode container"}>
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
