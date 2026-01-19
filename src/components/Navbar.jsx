@@ -98,7 +98,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
           display: flex;
           align-items: center;
           gap: 0.3rem;
-          color: ${darkMode ? "#ffffff" : "#000000"};
+          color: ${darkMode ? "#ffffff" : "#000328"};
           text-decoration: none;
           transition: color 0.3s;
           cursor: pointer;
@@ -131,7 +131,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(0,0,0,0.5);
+            background: #000328;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;

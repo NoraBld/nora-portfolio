@@ -62,7 +62,7 @@ export default function Home() {
       {/* Contenu */}
       <div
         className="relative min-h-screen flex flex-col items-center justify-center px-4 z-10"
-        style={{ color: darkMode ? "#ffffff" : "#000000" }}
+        style={{ color: darkMode ? "#ffffff" : "#000328" }}
       >
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
@@ -70,7 +70,7 @@ export default function Home() {
           {/* Titre principal */}
           <h1
             className="text-6xl font-extrabold mb-4"
-            style={{ fontSize: "4rem" , color: darkMode ? "#ffffff" : "#000000" }}
+            style={{ fontSize: "4rem" , color: darkMode ? "#ffffff" : "#000328" }}
           >
             {currentTexts[0]}
           </h1>
@@ -94,7 +94,7 @@ export default function Home() {
               lineHeight: 2.2,
               textAlign: "center",
               display: "inline-flex",
-              alignItems: "center",color: darkMode ? "#ffffff" : "#000000" }}
+              alignItems: "center",color: darkMode ? "#ffffff" : "#000328" }}
           >
             {currentTexts[2]}
             {currentTexts[2] === lines[2] && (
