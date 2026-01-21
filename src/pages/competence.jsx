@@ -3,33 +3,32 @@ import Navbar from "../components/Navbar";
 import ParticlesBackground from "../components/ParticlesBackground";
 
 const skills = [
-  { name: "HTML", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { name: "CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-  { name: "JavaScript 2025", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "Bootstrap", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" },
-  { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Angular", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
-  { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
-  { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "PHP", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-  { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-  { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { name: ".NET 8 (Web API)", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
-  { name: "git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { name: "Oracle", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
-  { name: "Express", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-  { name: "Github", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { name: "NextJs", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+  { name: "HTML", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { name: "CSS", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  { name: "JavaScript 2025", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "Bootstrap", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" },
+  { name: "React", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Angular", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
+  { name: "Vue.js", category: "frontend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+
+  { name: "Node.js", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Python", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "PHP", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+  { name: ".NET 8 (Web API)", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" },
+  { name: "Express", category: "backend", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+
+  { name: "MongoDB", category: "bdd", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { name: "MySQL", category: "bdd", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "PostgreSQL", category: "bdd", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { name: "Oracle", category: "bdd", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
 ];
 
 export default function Competence() {
   const [darkMode, setDarkMode] = useState(false);
+  const [filter, setFilter] = useState("tous");
 
   useEffect(() => {
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setDarkMode(true);
     }
   }, []);
@@ -47,38 +46,94 @@ export default function Competence() {
         <main className="text-center mt-20 px-4">
           <h1 className="text-4xl mb-12">Mes Compétences</h1>
 
-          {/* Liste des compétences */}
-          <div className="flex flex-wrap justify-center">
-            {skills.map((skill, index) => (
-              <div key={index} className="skill-wrapper">
-                <div
-                  className="skill-circle"
-                  style={{
-                    background: darkMode ? "#B15B86" : "#f3f4f6",
-                    color: darkMode ? "#ffffff" : "#000000",
-                  }}
-                >
-                  {skill.logo && <img src={skill.logo} alt={skill.name} className="skill-logo" />}
-                </div>
-                <span className="skill-text">{skill.name}</span>
-              </div>
-            ))}
+          {/* TABS */}
+          <div className="tabs">
+            <button className={filter === "tous" ? "active" : ""} onClick={() => setFilter("tous")}>
+              Tous
+            </button>
+            <button className={filter === "frontend" ? "active" : ""} onClick={() => setFilter("frontend")}>
+              Frontend
+            </button>
+            <button className={filter === "backend" ? "active" : ""} onClick={() => setFilter("backend")}>
+              Backend
+            </button>
+            <button className={filter === "bdd" ? "active" : ""} onClick={() => setFilter("bdd")}>
+              BDD
+            </button>
           </div>
 
-          {/* Styles CSS intégrés */}
+          {/* SKILLS */}
+          <div
+            className={`flex flex-wrap justify-center ${
+              filter !== "tous" ? "with-space" : ""
+            }`}
+          >
+            {skills
+              .filter(skill => filter === "tous" || skill.category === filter)
+              .map((skill, index) => (
+                <div key={index} className="skill-wrapper">
+                  <div
+                    className="skill-circle"
+                    style={{
+                      background: darkMode ? "#000328" : "#f3f4f6",
+                      color: darkMode ? "#ffffff" : "#000000",
+                    }}
+                  >
+                    <img src={skill.logo} alt={skill.name} className="skill-logo" />
+                  </div>
+                  <span className="skill-text">{skill.name}</span>
+                </div>
+              ))}
+          </div>
+
+          {/* CSS */}
           <style>{`
+            .tabs {
+              display: flex;
+              justify-content: center;
+              gap: 2rem;
+              margin-bottom: 3rem;
+              margin-top: 2rem;
+              flex-wrap: wrap;
+            }
+
+            .tabs button {
+              padding: 0.7rem 1.5rem;
+              border: 2px solid #B15B86;
+              background: transparent;
+              color: inherit;
+              border-radius: 12px;
+              cursor: pointer;
+              font-weight: 500;
+              transition: all 0.3s;
+            }
+
+            .tabs button.active,
+            .tabs button:hover {
+              background: #B15B86;
+              color: #ffffff;
+              transform: translateY(-2px);
+              box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            }
+
             .skill-wrapper {
               display: flex;
               flex-direction: column;
               align-items: center;
               margin-top: 30px;
-              flex: 0 0 calc(100% /8 - 16px); 
+              flex: 0 0 calc(100% / 8 - 16px);
             }
-            
+
+            /* Espace UNIQUEMENT pour Frontend / Backend / BDD */
+            .with-space .skill-wrapper {
+              margin-left: 12px;
+              margin-right: 12px;
+            }
+
             main h1 {
-  margin-top: 16px;
-  margin-bottom: 80px;
-}
+              margin-top: 16px;
+              margin-bottom: 80px;
+            }
 
             .skill-circle {
               display: flex;
@@ -87,6 +142,7 @@ export default function Competence() {
               width: 60px;
               height: 60px;
               border-radius: 50%;
+              border: 2px solid #B15B86;
               box-shadow: 0 2px 4px rgba(0,0,0,0.2);
               transition: transform 0.2s;
             }
@@ -108,13 +164,13 @@ export default function Competence() {
 
             @media (max-width: 1024px) {
               .skill-wrapper {
-                flex: 0 0 calc(100% / 5 - 16px); /* 5 par ligne sur tablette */
+                flex: 0 0 calc(100% / 5 - 16px);
               }
             }
 
             @media (max-width: 640px) {
               .skill-wrapper {
-                flex: 0 0 calc(100% / 3 - 16px); /* 3 par ligne sur mobile */
+                flex: 0 0 calc(100% / 3 - 16px);
               }
             }
           `}</style>
