@@ -11,7 +11,7 @@ import {
   FaGithub
 } from "react-icons/fa";
 
-export default function contact() {
+export default function Contact() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {

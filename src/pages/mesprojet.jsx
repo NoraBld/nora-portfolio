@@ -45,7 +45,7 @@ const projects = [
 
 ];
 
-export default function mesprojet() {
+export default function Mesprojet() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {

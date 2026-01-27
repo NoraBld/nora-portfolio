@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import ParticlesBackground from "../components/ParticlesBackground";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 
-export default function home() {
+export default function Home() {
   const lines = [
     "Bienvenue sur mon portfolio",
     "Je suis Nora BLD",

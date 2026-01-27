@@ -23,7 +23,7 @@ const skills = [
   { name: "Oracle", category: "bdd", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
 ];
 
-export default function competence() {
+export default function Competence() {
   const [darkMode, setDarkMode] = useState(false);
   const [filter, setFilter] = useState("tous");
 
