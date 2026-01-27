@@ -4,7 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 
 import About from "./pages/About";
-import Competence from "./pages/Competence";
+
+import Competence from "./pages/Competence"; // doit correspondre exactement au nom du fichier
+
 import Contact from "./pages/Contact";
 import Diplomeetstage from "./pages/Diplomeetstage";
 import Mesprojet from "./pages/Mesprojet";
