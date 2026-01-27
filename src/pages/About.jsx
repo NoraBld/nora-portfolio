@@ -277,7 +277,8 @@ export default function About() {
         /* Responsive */
         @media(max-width: 767px) {
           .main-section { flex-direction: column; align-items: center; }
-          .photo-section { margin-right: 0; margin-bottom: 2rem; }
+          .photo-section { margin-right: 0; margin-bottom: 2rem;width: 50%;
+          max-width: 150px; }
           .tabs { gap: 1.5rem; margin-top: 1.5rem; }
         }
       `}</style>
