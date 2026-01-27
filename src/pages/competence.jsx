@@ -131,8 +131,12 @@ export default function Competence() {
             }
 
             main h1 {
-              margin-top: 16px;
-              margin-bottom: 80px;
+             
+              font-size: 3rem;
+              margin-top: 5rem;
+              margin-bottom: 1.5rem;
+              text-align: center;
+              color: #B15B86;
             }
 
             .skill-circle {
@@ -173,6 +177,19 @@ export default function Competence() {
                 flex: 0 0 calc(100% / 3 - 16px);
               }
             }
+              
+          @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem !important; }
+           
+          }
+          @media (max-width: 768px) {
+            h1 { font-size: 2rem !important; }
+            
+          }
+          @media (max-width: 480px) {
+            h1 { font-size: 1.6rem !important; }
+           
+          }
           `}</style>
         </main>
       </div>

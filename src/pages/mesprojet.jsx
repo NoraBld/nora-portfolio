@@ -83,9 +83,14 @@ export default function Mesprojet() {
           <h1
             className="text-6xl font-extrabold mb-8 neon"
             style={{
+              marginTop:"5rem",
+              marginBottom:"1.5rem",
               fontSize: "3rem",
               textShadow: "0 0 10px #B15B86, 0 0 20px #B15B86",
               color: "#B15B86",
+           
+         
+          
             }}
           >
             Mes projets

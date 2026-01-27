@@ -281,6 +281,18 @@ export default function About() {
           max-width: 150px; }
           .tabs { gap: 1.5rem; margin-top: 1.5rem; }
         }
+          @media (max-width: 1024px) {
+            h1 { font-size: 2.5rem !important; }
+           
+          }
+          @media (max-width: 768px) {
+            h1 { font-size: 2rem !important; }
+            
+          }
+          @media (max-width: 480px) {
+            h1 { font-size: 1.6rem !important; }
+           
+          }
       `}</style>
     </>
   );
