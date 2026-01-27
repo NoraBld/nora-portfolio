@@ -21,6 +21,13 @@ const projects = [
     type: "Projet académique – Deep Learning",
     github: "https://github.com/NoraBld/ANOMA",
   },
+    {
+    title: "Application web de gestion d’une salle de sport",
+    description:
+      "Plateforme web pour la gestion des membres, des abonnements et des séances sportives avec une interface simple et moderne.",
+    image: "/images/adina.jpg",
+    type: "Projet académique",
+  },
   {
     title: "Application desktop de gestion de parking",
     description:
@@ -35,13 +42,7 @@ const projects = [
     image: "/images/edt.png",
     type: "Projet académique",
   },
-  {
-    title: "Application web de gestion d’une salle de sport",
-    description:
-      "Plateforme web pour la gestion des membres, des abonnements et des séances sportives avec une interface simple et moderne.",
-    image: "/images/adina.jpg",
-    type: "Projet académique",
-  },
+
 ];
 
 export default function Mesprojet() {
