@@ -5,7 +5,7 @@ import { FaGraduationCap, FaBriefcase } from "react-icons/fa";
 import logoUniv from "../assets/logouniv.png";
 import logo from "../assets/logo1.jpeg";
 
-export default function Diplomeetstage() {
+export default function diplomeetstage() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import ParticlesBackground from "../components/ParticlesBackground";
 import darkProfile from "../assets/NORAimagesombre.png";
 import lightProfile from "../assets/NORAimageclaire.png";
 
-export default function About() {
+export default function about() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeTab, setActiveTab] = useState("description");
   const [slideDirection, setSlideDirection] = useState("right");
