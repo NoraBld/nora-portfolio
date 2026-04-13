@@ -10,7 +10,7 @@ import Competence from "./pages/Competence"; // doit correspondre exactement au 
 import Contact from "./pages/Contact";
 import Diplomeetstage from "./pages/Diplomeetstage";
 import Mesprojet from "./pages/Mesprojet";
-
+import Experience from "./pages/Experience";
 
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />  {/* <== AJOUT */}
         <Route path="/diplomeetstage" element={<Diplomeetstage />} />
+        <Route path="/experience" element={<Experience />} />
         <Route path="/competence" element={<Competence />} />
         <Route path="/mesprojet" element={<Mesprojet />} />
       </Routes>
